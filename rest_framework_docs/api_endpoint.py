@@ -46,7 +46,7 @@ class ApiEndpoint(object):
                         "name": key,
                         "type": str(field.__class__.__name__),
                         "required": field.required
-                    } for key, field in serializer().get_fields().items()]
+                    } for key, field in serializer().get_fields().items() if not field.read_only]
                 except KeyError as e:
                     self.errors = e
                     fields = []
